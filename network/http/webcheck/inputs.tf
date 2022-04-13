@@ -5,6 +5,17 @@ variable "environment" {
 }
 
 # Global DataDog
+variable "domain" {
+  description = "Domain of the service"
+  type        = string
+  default     = "devops"
+}
+
+variable "filter_tags" {
+  description = "Tags used for filtering"
+  default     = "*"
+}
+
 variable "evaluation_delay" {
   description = "Delay in seconds for the metric evaluation"
   default     = 15

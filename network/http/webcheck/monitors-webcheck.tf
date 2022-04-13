@@ -1,3 +1,14 @@
+locals {
+  common_tags = [
+    "env:${var.environment}",
+    "type:network",
+    "provider:http_check",
+    "resource:webcheck",
+    "domain:${var.domain}",
+    "created-by:terraform"
+  ]
+}
+
 #
 # HTTP Cannot Connect
 #
@@ -26,5 +37,5 @@ EOQ
   require_full_window = true
   renotify_interval   = 0
 
-  tags = concat(["env:${var.environment}", "type:network", "provider:http_check", "resource:webcheck", "team:claranet", "created-by:terraform"], var.cannot_connect_extra_tags)
+  tags = concat(local.common_tags, var.cannot_connect_extra_tags)
 }
