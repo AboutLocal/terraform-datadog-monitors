@@ -18,7 +18,7 @@ output "query_alert" {
 # service_check = .over("tag:val","tag2:val2").exclude("excludedtag:value","exludedtag2:value2")
 output "service_check" {
   description = "The full filtering pattern including braces for query alert monitor type"
-  value       = ".over(\"${replace(local.including_string, ",", "\",\"")}\")${local.excluding_string == "" ? "" : ".exclude(\"${replace(local.excluding_string, ",", "\",\"")}\")"}"
+  value       = "${local.including_string == "" ? "" : ".over(\"${replace(local.including_string, ",", "\",\"")}\")"}${local.excluding_string == "" ? "" : ".exclude(\"${replace(local.excluding_string, ",", "\",\"")}\")"}"
 }
 
 # event_alert = tags:tag:val,tag2:val2 excluded_tags:excludedtag:value,exludedtag2:value2
